@@ -1,0 +1,96 @@
+	Mon May 20 02:39 2019 Time and Allocation Profiling Report  (Final)
+
+	   bingo-sim +RTS -p -RTS 100000
+
+	total time  =        0.46 secs   (458 ticks @ 1000 us, 1 processor)
+	total alloc = 556,512,224 bytes  (excludes profiling overheads)
+
+COST CENTRE                 MODULE              SRC                                          %time %alloc
+
+next                        BingoSim.Prng       src/BingoSim/Prng.hs:(79,1)-(91,40)           44.1   55.3
+swapBits                    BingoSim.Simulation src/BingoSim/Simulation.hs:(143,1)-(147,12)   15.1    0.0
+shuffleBits.withRand.bs'    BingoSim.Simulation src/BingoSim/Simulation.hs:129:9-49           10.3    9.2
+shuffleBits.withRand        BingoSim.Simulation src/BingoSim/Simulation.hs:(127,3)-(131,14)    9.4    0.0
+shuffleBits                 BingoSim.Simulation src/BingoSim/Simulation.hs:(123,1)-(131,14)    8.1    0.0
+shuffleBits.withRand.result BingoSim.Simulation src/BingoSim/Simulation.hs:130:9-49            6.6   15.4
+next.result                 BingoSim.Prng       src/BingoSim/Prng.hs:80:7-41                   0.9   10.1
+swapBits.result             BingoSim.Simulation src/BingoSim/Simulation.hs:146:7-56            0.7    9.2
+
+
+                                                                                                                          individual      inherited
+COST CENTRE                          MODULE                SRC                                         no.     entries  %time %alloc   %time %alloc
+
+MAIN                                 MAIN                  <built-in>                                  195          0    0.0    0.0   100.0  100.0
+ CAF                                 GHC.Conc.Signal       <entire-module>                             292          0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.Float             <entire-module>                             284          0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Encoding       <entire-module>                             274          0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Encoding.Iconv <entire-module>                             272          0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Handle.FD      <entire-module>                             263          0    0.0    0.0     0.0    0.0
+ CAF                                 Text.Printf           <entire-module>                             226          0    0.0    0.0     0.0    0.0
+ CAF                                 Text.Read.Lex         <entire-module>                             224          0    0.0    0.0     0.0    0.0
+ CAF:board_r5qp                      BingoSim.Simulation   <no location info>                          317          0    0.0    0.0     0.0    0.0
+  runSimulation                      BingoSim.Simulation   src/BingoSim/Simulation.hs:(69,1)-(85,41)   405          0    0.0    0.0     0.0    0.0
+   randomBoard                       BingoSim.Simulation   src/BingoSim/Simulation.hs:(109,1)-(112,15) 406          0    0.0    0.0     0.0    0.0
+    randomBoard.board                BingoSim.Simulation   src/BingoSim/Simulation.hs:110:7-28         407          1    0.0    0.0     0.0    0.0
+ CAF:col1                            BingoSim.Board        src/BingoSim/Board.hs:148:1-4               349          0    0.0    0.0     0.0    0.0
+  col1                               BingoSim.Board        src/BingoSim/Board.hs:148:1-45              428          1    0.0    0.0     0.0    0.0
+ CAF:col2                            BingoSim.Board        src/BingoSim/Board.hs:151:1-4               348          0    0.0    0.0     0.0    0.0
+  col2                               BingoSim.Board        src/BingoSim/Board.hs:151:1-45              429          1    0.0    0.0     0.0    0.0
+ CAF:col3                            BingoSim.Board        src/BingoSim/Board.hs:154:1-4               347          0    0.0    0.0     0.0    0.0
+  col3                               BingoSim.Board        src/BingoSim/Board.hs:154:1-45              430          1    0.0    0.0     0.0    0.0
+ CAF:col4                            BingoSim.Board        src/BingoSim/Board.hs:157:1-4               346          0    0.0    0.0     0.0    0.0
+  col4                               BingoSim.Board        src/BingoSim/Board.hs:157:1-45              431          1    0.0    0.0     0.0    0.0
+ CAF:col5                            BingoSim.Board        src/BingoSim/Board.hs:160:1-4               345          0    0.0    0.0     0.0    0.0
+  col5                               BingoSim.Board        src/BingoSim/Board.hs:160:1-45              432          1    0.0    0.0     0.0    0.0
+ CAF:col6                            BingoSim.Board        src/BingoSim/Board.hs:163:1-4               343          0    0.0    0.0     0.0    0.0
+  col6                               BingoSim.Board        src/BingoSim/Board.hs:163:1-45              433          1    0.0    0.0     0.0    0.0
+ CAF:dia1                            BingoSim.Board        src/BingoSim/Board.hs:124:1-4               358          0    0.0    0.0     0.0    0.0
+  dia1                               BingoSim.Board        src/BingoSim/Board.hs:124:1-45              420          1    0.0    0.0     0.0    0.0
+ CAF:dia2                            BingoSim.Board        src/BingoSim/Board.hs:127:1-4               357          0    0.0    0.0     0.0    0.0
+  dia2                               BingoSim.Board        src/BingoSim/Board.hs:127:1-45              421          1    0.0    0.0     0.0    0.0
+ CAF:lvl1_r5qk                       BingoSim.Simulation   <no location info>                          314          0    0.0    0.0     0.0    0.0
+ CAF:lvl3_r5qm                       BingoSim.Simulation   <no location info>                          315          0    0.0    0.0     0.0    0.0
+ CAF:lvl5_r5qo                       BingoSim.Simulation   <no location info>                          316          0    0.0    0.0     0.0    0.0
+ CAF:lvl6_r5qq                       BingoSim.Simulation   <no location info>                          318          0    0.0    0.0     0.0    0.0
+  runSimulation                      BingoSim.Simulation   src/BingoSim/Simulation.hs:(69,1)-(85,41)   399          0    0.0    0.0     0.0    0.0
+   mkState                           BingoSim.Prng         src/BingoSim/Prng.hs:(56,1)-(58,39)         400          1    0.0    0.0     0.0    0.0
+ CAF:main1                           Main                  <no location info>                          388          0    0.0    0.0     0.0    0.0
+  main                               Main                  app/Main.hs:(10,1)-(12,30)                  390          1    0.0    0.0     0.0    0.0
+ CAF:main4                           Main                  <no location info>                          385          0    0.0    0.0     0.0    0.0
+ CAF:row1                            BingoSim.Board        src/BingoSim/Board.hs:130:1-4               355          0    0.0    0.0     0.0    0.0
+  row1                               BingoSim.Board        src/BingoSim/Board.hs:130:1-45              422          1    0.0    0.0     0.0    0.0
+ CAF:row2                            BingoSim.Board        src/BingoSim/Board.hs:133:1-4               354          0    0.0    0.0     0.0    0.0
+  row2                               BingoSim.Board        src/BingoSim/Board.hs:133:1-45              423          1    0.0    0.0     0.0    0.0
+ CAF:row3                            BingoSim.Board        src/BingoSim/Board.hs:136:1-4               353          0    0.0    0.0     0.0    0.0
+  row3                               BingoSim.Board        src/BingoSim/Board.hs:136:1-45              424          1    0.0    0.0     0.0    0.0
+ CAF:row4                            BingoSim.Board        src/BingoSim/Board.hs:139:1-4               352          0    0.0    0.0     0.0    0.0
+  row4                               BingoSim.Board        src/BingoSim/Board.hs:139:1-45              425          1    0.0    0.0     0.0    0.0
+ CAF:row5                            BingoSim.Board        src/BingoSim/Board.hs:142:1-4               351          0    0.0    0.0     0.0    0.0
+  row5                               BingoSim.Board        src/BingoSim/Board.hs:142:1-45              426          1    0.0    0.0     0.0    0.0
+ CAF:row6                            BingoSim.Board        src/BingoSim/Board.hs:145:1-4               350          0    0.0    0.0     0.0    0.0
+  row6                               BingoSim.Board        src/BingoSim/Board.hs:145:1-45              427          1    0.0    0.0     0.0    0.0
+ main                                Main                  app/Main.hs:(10,1)-(12,30)                  391          0    0.0    0.0   100.0  100.0
+  main.\                             Main                  app/Main.hs:11:13-37                        392          1    0.0    0.0   100.0  100.0
+   runSimulation                     BingoSim.Simulation   src/BingoSim/Simulation.hs:(69,1)-(85,41)   393          1    0.2    0.0   100.0  100.0
+    hasBingo                         BingoSim.Board        src/BingoSim/Board.hs:(82,1)-(96,32)        419     100000    0.7    0.0     0.7    0.0
+    randomBoard                      BingoSim.Simulation   src/BingoSim/Simulation.hs:(109,1)-(112,15) 394     100000    0.2    0.9    99.1  100.0
+     randomBoard.result              BingoSim.Simulation   src/BingoSim/Simulation.hs:111:7-40         395     100000    0.4    0.0    98.9   99.1
+      shuffleBits                    BingoSim.Simulation   src/BingoSim/Simulation.hs:(123,1)-(131,14) 396    3600000    8.1    0.0    98.5   99.1
+       next                          BingoSim.Prng         src/BingoSim/Prng.hs:(79,1)-(91,40)         398    3500000   44.1   55.3    90.2   99.1
+        next.result                  BingoSim.Prng         src/BingoSim/Prng.hs:80:7-41                401    3500000    0.9   10.1     0.9   10.1
+        shuffleBits.withRand         BingoSim.Simulation   src/BingoSim/Simulation.hs:(127,3)-(131,14) 402    3500000    9.4    0.0    43.7   33.7
+         shuffleBits.withRand.bs'    BingoSim.Simulation   src/BingoSim/Simulation.hs:129:9-49         404    3500000   10.3    9.2    26.9   18.3
+          swapBits                   BingoSim.Simulation   src/BingoSim/Simulation.hs:(143,1)-(147,12) 408    3500000   15.1    0.0    16.6    9.2
+           swapBits.result           BingoSim.Simulation   src/BingoSim/Simulation.hs:146:7-56         410    3182752    0.7    9.2     0.7    9.2
+           swapBits.x                BingoSim.Simulation   src/BingoSim/Simulation.hs:145:7-59         409    3182752    0.9    0.0     0.9    0.0
+         shuffleBits.withRand.i      BingoSim.Simulation   src/BingoSim/Simulation.hs:128:9-45         403    3500000    0.9    0.0     0.9    0.0
+         shuffleBits.withRand.result BingoSim.Simulation   src/BingoSim/Simulation.hs:130:9-49         411    3500000    6.6   15.4     6.6   15.4
+        next.s0'                     BingoSim.Prng         src/BingoSim/Prng.hs:87:7-27                418    3499999    0.2    0.0     0.2    0.0
+        next.s1'                     BingoSim.Prng         src/BingoSim/Prng.hs:86:7-27                417    3499999    0.4    0.0     0.4    0.0
+        next.s2'                     BingoSim.Prng         src/BingoSim/Prng.hs:84:7-26                414    3499999    0.0    0.0     0.0    0.0
+        next.s2''                    BingoSim.Prng         src/BingoSim/Prng.hs:89:7-26                416    3499999    0.0    0.0     0.0    0.0
+        next.s3'                     BingoSim.Prng         src/BingoSim/Prng.hs:85:7-26                412    3499999    0.2    0.0     0.2    0.0
+        next.s3''                    BingoSim.Prng         src/BingoSim/Prng.hs:90:7-31                413    3499999    0.7    0.0     0.7    0.0
+        next.t                       BingoSim.Prng         src/BingoSim/Prng.hs:82:7-35                415    3499999    0.0    0.0     0.0    0.0
+       shuffleBits.n'                BingoSim.Simulation   src/BingoSim/Simulation.hs:126:3-12         397    3500000    0.2    0.0     0.2    0.0
+    runSimulation.rate               BingoSim.Simulation   src/BingoSim/Simulation.hs:82:7-58          434          1    0.0    0.0     0.0    0.0

@@ -1,3 +1,4 @@
+{-# LANGUAGE BangPatterns   #-}
 {-# LANGUAGE BinaryLiterals #-}
 
 -- |
@@ -106,8 +107,9 @@ runSimulation trials = do
 -- intuition for how this game works in the real world.
 randomBoard :: Prng.State -> IO (Board, Prng.State)
 randomBoard gen = do
-  let board = Board 0x7fff
-  return $ shuffleBits gen board 36
+  let board   = Board 0x7fff
+  let !result = shuffleBits gen board 36
+  return result
 
 -- | Implements [Fisher-Yates](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) at the bit level for a 'Board'.
 --
@@ -123,9 +125,10 @@ shuffleBits gen (Board bs) n = next gen withRand
  where
   n' = n - 1
   withRand rand gen' =
-    let i   = rand `mod` (fromIntegral n)
-        bs' = swapBits bs n' (fromIntegral i)
-    in  shuffleBits gen' (Board bs') n'
+    let !i      = rand `mod` (fromIntegral n)
+        !bs'    = swapBits bs n' (fromIntegral i)
+        !result = shuffleBits gen' (Board bs') n'
+    in  result
 
 -- | Helper for swapping two specific bits.
 --
@@ -139,6 +142,7 @@ swapBits
   -> Word64 -- ^ Swapped result
 swapBits bs i j | i == j = bs
 swapBits bs i j =
-  let x = ((shiftR bs i) `xor` (shiftR bs j)) .&. 0x1
-  in  bs `xor` ((shiftL x i) .|. (shiftL x j))
+  let !x      = ((shiftR bs i) `xor` (shiftR bs j)) .&. 0x1
+      !result = bs `xor` ((shiftL x i) .|. (shiftL x j))
+  in  result
 
