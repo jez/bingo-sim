@@ -1,5 +1,5 @@
 name:                bingo-sim
-version:             0.0.0.0
+version:             0.0.1.0
 homepage:            https://github.com/jez/bingo-sim
 author:              Jake Zimmerman
 maintainer:          zimmerman.jake@gmail.com
@@ -24,9 +24,12 @@ ghc-options:
 - -Wmissing-signatures
 - -Werror
 - -funbox-strict-fields
+- -O2
 
 dependencies:
 - base >=4.7 && <5
+- random
+- random-shuffle
 
 library:
   source-dirs: src
