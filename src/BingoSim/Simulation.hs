@@ -37,10 +37,11 @@ import           Control.Monad
 import           Data.Bits
 import           Data.IORef
 import           Data.Word
-import           System.Random
 import           Text.Printf
 
 import           BingoSim.Board
+import           BingoSim.Prng  (mkState, next)
+import qualified BingoSim.Prng  as Prng
 
 -- | Run the entire simulation, consisting of @trials@ trials.
 --
@@ -66,7 +67,7 @@ runSimulation
   -> IO ()
 runSimulation trials = do
   count  <- newIORef 0
-  genRef <- newStdGen >>= newIORef
+  genRef <- newIORef (mkState 111 222 333 444)
 
   replicateM_ trials $ do
     gen           <- readIORef genRef
@@ -103,7 +104,7 @@ runSimulation trials = do
 --
 -- The sacrifice is that the naive strategy nearly exactly matches our
 -- intuition for how this game works in the real world.
-randomBoard :: RandomGen g => g -> IO (Board, g)
+randomBoard :: Prng.State -> IO (Board, Prng.State)
 randomBoard gen = do
   let board = Board 0x7fff
   return $ shuffleBits gen board 36
@@ -113,16 +114,16 @@ randomBoard gen = do
 -- Uses recursion to swap the current bit into place, from most to least
 -- significant.
 shuffleBits
-  :: RandomGen g
-  => g
+  :: Prng.State
   -> Board
-  -> Int -- ^ @n@: The current bit we're considering swapping or leaving alone.
-  -> (Board, g)
+  -> Int -- ^ @n@: The current bit we're considering swapping or leaving alone (1-indexed).
+  -> (Board, Prng.State)
 shuffleBits gen board 1 = (board, gen)
 shuffleBits gen (Board bs) n =
-  let n'        = n - 1
-      (i, gen') = randomR (0, n') gen
-      bs'       = swapBits bs n' i
+  let n'           = n - 1
+      (rand, gen') = next gen
+      i            = rand `mod` (fromIntegral n)
+      bs'          = swapBits bs n' (fromIntegral i)
   in  shuffleBits gen' (Board bs') n'
 
 -- | Helper for swapping two specific bits.

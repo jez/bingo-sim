@@ -4,10 +4,10 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 26378589030ced4d8f54066cd640d122b18b9474d2082849b5a315cade4a9319
+-- hash: 3fa6868be54f56e844ce88095718d2f5be4a44d809a636babdeadda66d9faeba
 
 name:           bingo-sim
-version:        0.0.2.0
+version:        0.0.3.0
 synopsis:       A small playground to learn about profiling Haskell.
 
 description:    This package simulates the probability of scoring a bingo at a particular children's carnival game. I've been using it to learn how profiling in Haskell works.
@@ -25,6 +25,7 @@ extra-source-files:
 library
   exposed-modules:
       BingoSim.Board
+      BingoSim.Prng
       BingoSim.Simulation
   other-modules:
       Paths_bingo_sim
