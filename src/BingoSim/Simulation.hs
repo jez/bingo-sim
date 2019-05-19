@@ -118,13 +118,14 @@ shuffleBits
   -> Board
   -> Int -- ^ @n@: The current bit we're considering swapping or leaving alone (1-indexed).
   -> (Board, Prng.State)
-shuffleBits gen board 1 = (board, gen)
-shuffleBits gen (Board bs) n =
-  let n'           = n - 1
-      (rand, gen') = next gen
-      i            = rand `mod` (fromIntegral n)
-      bs'          = swapBits bs n' (fromIntegral i)
-  in  shuffleBits gen' (Board bs') n'
+shuffleBits gen board      1 = (board, gen)
+shuffleBits gen (Board bs) n = next gen withRand
+ where
+  n' = n - 1
+  withRand rand gen' =
+    let i   = rand `mod` (fromIntegral n)
+        bs' = swapBits bs n' (fromIntegral i)
+    in  shuffleBits gen' (Board bs') n'
 
 -- | Helper for swapping two specific bits.
 --
