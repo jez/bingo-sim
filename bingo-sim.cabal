@@ -1,0 +1,45 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.1.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 395bd0817263e9250ab33ee808a41e7beb5698eb332b5588c05d5c0a7647fabd
+
+name:           bingo-sim
+version:        0.0.0.0
+synopsis:       A small playground to learn about profiling Haskell.
+
+description:    This package simulates the probability of scoring a bingo at a particular children's carnival game. I've been using it to learn how profiling in Haskell works.
+category:       Simple
+homepage:       https://github.com/jez/bingo-sim
+author:         Jake Zimmerman
+maintainer:     zimmerman.jake@gmail.com
+copyright:      2019 Jake Zimmerman
+license:        MIT
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+
+library
+  other-modules:
+      Paths_bingo_sim
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Wcompat -Wmissing-signatures -Werror -funbox-strict-fields
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable bingo-sim
+  main-is: Main.hs
+  other-modules:
+      Paths_bingo_sim
+  hs-source-dirs:
+      app
+  ghc-options: -Wall -Wcompat -Wmissing-signatures -Werror -funbox-strict-fields
+  build-depends:
+      base >=4.7 && <5
+    , bingo-sim
+  default-language: Haskell2010
