@@ -1,0 +1,162 @@
+	Mon May 20 01:35 2019 Time and Allocation Profiling Report  (Final)
+
+	   bingo-sim +RTS -p -RTS 100000
+
+	total time  =        1.72 secs   (1717 ticks @ 1000 us, 1 processor)
+	total alloc = 3,552,779,488 bytes  (excludes profiling overheads)
+
+COST CENTRE               MODULE              SRC                                          %time %alloc
+
+randomIvalInteger         System.Random       System/Random.hs:(468,1)-(489,76)             21.3   29.2
+stdNext                   System.Random       System/Random.hs:(518,1)-(528,64)             15.5   17.3
+randomIvalInteger.f       System.Random       System/Random.hs:(486,8)-(489,76)             11.0    2.4
+randomIvalIntegral        System.Random       System/Random.hs:462:1-71                      6.9   13.4
+shuffleBits               BingoSim.Simulation src/BingoSim/Simulation.hs:(121,1)-(126,37)    6.7   11.0
+randomIvalInteger.f.v'    System.Random       System/Random.hs:489:25-76                     6.5    4.7
+randomIvalInteger.b       System.Random       System/Random.hs:473:8-54                      5.3    6.3
+randomIvalInteger.(...)   System.Random       System/Random.hs:472:8-36                      3.6    0.0
+randomIvalInteger.magtgt  System.Random       System/Random.hs:483:8-21                      3.1    1.6
+next                      System.Random       System/Random.hs:218:3-17                      2.7    2.4
+shuffleBits.bs'           BingoSim.Simulation src/BingoSim/Simulation.hs:125:7-34            2.6    1.6
+swapBits                  BingoSim.Simulation src/BingoSim/Simulation.hs:(138,1)-(141,46)    2.4    1.4
+randomIvalInteger.f.(...) System.Random       System/Random.hs:488:25-39                     2.3    0.0
+shuffleBits.(...)         BingoSim.Simulation src/BingoSim/Simulation.hs:124:7-37            1.9    2.4
+stdNext.z                 System.Random       System/Random.hs:520:17-34                     1.5    1.6
+randomIvalInteger.k       System.Random       System/Random.hs:482:8-20                      1.2    1.6
+randomIvalInteger.genlo   System.Random       System/Random.hs:472:8-36                      1.2    0.0
+stdNext.s2''              System.Random       System/Random.hs:528:17-64                     1.1    1.6
+stdNext.s1''              System.Random       System/Random.hs:524:17-64                     0.8    1.6
+
+
+                                                                                                                          individual      inherited
+COST CENTRE                          MODULE                SRC                                         no.     entries  %time %alloc   %time %alloc
+
+MAIN                                 MAIN                  <built-in>                                  298          0    0.0    0.0   100.0  100.0
+ CAF                                 GHC.Conc.Signal       <entire-module>                             398          0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.Float             <entire-module>                             390          0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Encoding       <entire-module>                             380          0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Encoding.Iconv <entire-module>                             378          0    0.0    0.0     0.0    0.0
+ CAF                                 GHC.IO.Handle.FD      <entire-module>                             369          0    0.1    0.0     0.1    0.0
+ CAF                                 Text.Printf           <entire-module>                             332          0    0.0    0.0     0.0    0.0
+ CAF                                 Text.Read.Lex         <entire-module>                             330          0    0.0    0.0     0.0    0.0
+ CAF:$dmrandomIO3                    System.Random         <no location info>                          442          0    0.0    0.0     0.0    0.0
+  getTime                            System.Random         System/Random.hs:(131,1)-(134,60)           604          1    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenStdGen_$cnext        System.Random         System/Random.hs:218:3-6                    441          0    0.0    0.0     0.0    0.0
+  next                               System.Random         System/Random.hs:218:3-17                   619          1    0.0    0.0     0.0    0.0
+ CAF:$fRandomGenStdGen_$csplit       System.Random         System/Random.hs:224:3-7                    522          0    0.0    0.0     0.0    0.0
+  split                              System.Random         System/Random.hs:224:3-18                   607          1    0.0    0.0     0.0    0.0
+ CAF:col1                            BingoSim.Board        src/BingoSim/Board.hs:148:1-4               555          0    0.0    0.0     0.0    0.0
+  col1                               BingoSim.Board        src/BingoSim/Board.hs:148:1-45              683          1    0.0    0.0     0.0    0.0
+ CAF:col2                            BingoSim.Board        src/BingoSim/Board.hs:151:1-4               554          0    0.0    0.0     0.0    0.0
+  col2                               BingoSim.Board        src/BingoSim/Board.hs:151:1-45              684          1    0.0    0.0     0.0    0.0
+ CAF:col3                            BingoSim.Board        src/BingoSim/Board.hs:154:1-4               553          0    0.0    0.0     0.0    0.0
+  col3                               BingoSim.Board        src/BingoSim/Board.hs:154:1-45              685          1    0.0    0.0     0.0    0.0
+ CAF:col4                            BingoSim.Board        src/BingoSim/Board.hs:157:1-4               552          0    0.0    0.0     0.0    0.0
+  col4                               BingoSim.Board        src/BingoSim/Board.hs:157:1-45              686          1    0.0    0.0     0.0    0.0
+ CAF:col5                            BingoSim.Board        src/BingoSim/Board.hs:160:1-4               551          0    0.0    0.0     0.0    0.0
+  col5                               BingoSim.Board        src/BingoSim/Board.hs:160:1-45              687          1    0.0    0.0     0.0    0.0
+ CAF:col6                            BingoSim.Board        src/BingoSim/Board.hs:163:1-4               549          0    0.0    0.0     0.0    0.0
+  col6                               BingoSim.Board        src/BingoSim/Board.hs:163:1-45              688          1    0.0    0.0     0.0    0.0
+ CAF:dia1                            BingoSim.Board        src/BingoSim/Board.hs:124:1-4               564          0    0.0    0.0     0.0    0.0
+  dia1                               BingoSim.Board        src/BingoSim/Board.hs:124:1-45              675          1    0.0    0.0     0.0    0.0
+ CAF:dia2                            BingoSim.Board        src/BingoSim/Board.hs:127:1-4               563          0    0.0    0.0     0.0    0.0
+  dia2                               BingoSim.Board        src/BingoSim/Board.hs:127:1-45              676          1    0.0    0.0     0.0    0.0
+ CAF:lvl1_r7ob                       BingoSim.Simulation   <no location info>                          529          0    0.0    0.0     0.0    0.0
+  shuffleBits                        BingoSim.Simulation   src/BingoSim/Simulation.hs:(121,1)-(126,37) 638          0    0.0    0.0     0.0    0.0
+   shuffleBits.(...)                 BingoSim.Simulation   src/BingoSim/Simulation.hs:124:7-37         639          0    0.0    0.0     0.0    0.0
+    randomR                          System.Random         System/Random.hs:345:34-61                  640          1    0.0    0.0     0.0    0.0
+ CAF:lvl3_r7od                       BingoSim.Simulation   <no location info>                          530          0    0.0    0.0     0.0    0.0
+ CAF:lvl5_r7of                       BingoSim.Simulation   <no location info>                          531          0    0.0    0.0     0.0    0.0
+ CAF:lvl7_r7oh                       BingoSim.Simulation   <no location info>                          532          0    0.0    0.0     0.0    0.0
+ CAF:main1                           Main                  <no location info>                          594          0    0.0    0.0     0.0    0.0
+  main                               Main                  app/Main.hs:(10,1)-(12,30)                  596          1    0.0    0.0     0.0    0.0
+ CAF:main4                           Main                  <no location info>                          591          0    0.0    0.0     0.0    0.0
+ CAF:newStdGen1                      System.Random         <no location info>                          523          0    0.0    0.0     0.0    0.0
+  newStdGen                          System.Random         System/Random.hs:573:1-46                   600          1    0.0    0.0     0.0    0.0
+ CAF:q_rkBz                          System.Random         System/Random.hs:481:8                      438          0    0.0    0.0     0.0    0.0
+  randomIvalInteger                  System.Random         System/Random.hs:(468,1)-(489,76)           646          0    0.0    0.0     0.0    0.0
+   randomIvalInteger.q               System.Random         System/Random.hs:481:8-15                   647          1    0.0    0.0     0.0    0.0
+ CAF:row1                            BingoSim.Board        src/BingoSim/Board.hs:130:1-4               561          0    0.0    0.0     0.0    0.0
+  row1                               BingoSim.Board        src/BingoSim/Board.hs:130:1-45              677          1    0.0    0.0     0.0    0.0
+ CAF:row2                            BingoSim.Board        src/BingoSim/Board.hs:133:1-4               560          0    0.0    0.0     0.0    0.0
+  row2                               BingoSim.Board        src/BingoSim/Board.hs:133:1-45              678          1    0.0    0.0     0.0    0.0
+ CAF:row3                            BingoSim.Board        src/BingoSim/Board.hs:136:1-4               559          0    0.0    0.0     0.0    0.0
+  row3                               BingoSim.Board        src/BingoSim/Board.hs:136:1-45              679          1    0.0    0.0     0.0    0.0
+ CAF:row4                            BingoSim.Board        src/BingoSim/Board.hs:139:1-4               558          0    0.0    0.0     0.0    0.0
+  row4                               BingoSim.Board        src/BingoSim/Board.hs:139:1-45              680          1    0.0    0.0     0.0    0.0
+ CAF:row5                            BingoSim.Board        src/BingoSim/Board.hs:142:1-4               557          0    0.0    0.0     0.0    0.0
+  row5                               BingoSim.Board        src/BingoSim/Board.hs:142:1-45              681          1    0.0    0.0     0.0    0.0
+ CAF:row6                            BingoSim.Board        src/BingoSim/Board.hs:145:1-4               556          0    0.0    0.0     0.0    0.0
+  row6                               BingoSim.Board        src/BingoSim/Board.hs:145:1-45              682          1    0.0    0.0     0.0    0.0
+ CAF:stdRange                        System.Random         System/Random.hs:514:1-8                    446          0    0.0    0.0     0.0    0.0
+  stdRange                           System.Random         System/Random.hs:514:1-26                   666          1    0.0    0.0     0.0    0.0
+ CAF:theStdGen                       System.Random         System/Random.hs:566:1-9                    443          0    0.0    0.0     0.0    0.0
+  theStdGen                          System.Random         System/Random.hs:(566,1)-(568,15)           602          1    0.0    0.0     0.0    0.0
+   mkStdRNG                          System.Random         System/Random.hs:(452,1)-(455,55)           603          1    0.0    0.0     0.0    0.0
+    createStdGen                     System.Random         System/Random.hs:276:1-44                   609          1    0.0    0.0     0.0    0.0
+     mkStdGen32                      System.Random         System/Random.hs:(267,1)-(273,36)           610          1    0.0    0.0     0.0    0.0
+      mkStdGen32.(...)               System.Random         System/Random.hs:272:9-39                   612          1    0.0    0.0     0.0    0.0
+      mkStdGen32.q                   System.Random         System/Random.hs:272:9-39                   615          1    0.0    0.0     0.0    0.0
+      mkStdGen32.s                   System.Random         System/Random.hs:271:9-45                   613          1    0.0    0.0     0.0    0.0
+      mkStdGen32.s1                  System.Random         System/Random.hs:272:9-39                   611          1    0.0    0.0     0.0    0.0
+      mkStdGen32.s2                  System.Random         System/Random.hs:273:9-36                   614          1    0.0    0.0     0.0    0.0
+    getTime                          System.Random         System/Random.hs:(131,1)-(134,60)           605          0    0.0    0.0     0.0    0.0
+     getTime.daytime                 System.Random         System/Random.hs:133:7-44                   606          1    0.0    0.0     0.0    0.0
+ main                                Main                  app/Main.hs:(10,1)-(12,30)                  597          0    0.0    0.0    99.9  100.0
+  main.\                             Main                  app/Main.hs:11:13-37                        598          1    0.0    0.0    99.9  100.0
+   runSimulation                     BingoSim.Simulation   src/BingoSim/Simulation.hs:(67,1)-(83,41)   599          1    0.3    0.0    99.9  100.0
+    hasBingo                         BingoSim.Board        src/BingoSim/Board.hs:(82,1)-(96,32)        674     100000    0.3    0.0     0.3    0.0
+    randomBoard                      BingoSim.Simulation   src/BingoSim/Simulation.hs:(107,1)-(109,35) 633     100000    0.2    0.0    99.4  100.0
+     shuffleBits                     BingoSim.Simulation   src/BingoSim/Simulation.hs:(121,1)-(126,37) 634    3600000    6.7   11.0    99.1   99.9
+      shuffleBits.(...)              BingoSim.Simulation   src/BingoSim/Simulation.hs:124:7-37         637    3500000    1.9    2.4    86.7   85.9
+       randomR                       System.Random         System/Random.hs:345:34-61                  641          0    0.8    0.0    84.9   83.5
+        randomIvalIntegral           System.Random         System/Random.hs:462:1-71                   642    3500000    6.9   13.4    84.1   83.5
+         randomIvalInteger           System.Random         System/Random.hs:(468,1)-(489,76)           643    3500000   21.3   29.2    77.2   70.1
+          randomIvalInteger.f        System.Random         System/Random.hs:(486,8)-(489,76)           648    7000000   11.0    2.4    41.5   31.5
+           randomIvalInteger.f.(...) System.Random         System/Random.hs:488:25-39                  651    3500000    2.3    0.0    24.0   24.4
+            next                     System.Random         System/Random.hs:218:3-17                   652          0    2.7    2.4    21.7   24.4
+             stdNext                 System.Random         System/Random.hs:(518,1)-(528,64)           654    3500000   15.5   17.3    19.0   22.1
+              stdNext.k              System.Random         System/Random.hs:522:17-38                  657    3500000    0.0    0.0     0.0    0.0
+              stdNext.k'             System.Random         System/Random.hs:526:17-38                  660    3500000    0.0    0.0     0.0    0.0
+              stdNext.s1'            System.Random         System/Random.hs:523:17-59                  658    3500000    0.0    0.0     0.0    0.0
+              stdNext.s1''           System.Random         System/Random.hs:524:17-64                  659    3500000    0.8    1.6     0.8    1.6
+              stdNext.s2'            System.Random         System/Random.hs:527:17-60                  661    3500000    0.0    0.0     0.0    0.0
+              stdNext.s2''           System.Random         System/Random.hs:528:17-64                  662    3500000    1.1    1.6     1.1    1.6
+              stdNext.z              System.Random         System/Random.hs:520:17-34                  656    3500000    1.5    1.6     1.5    1.6
+              stdNext.z'             System.Random         System/Random.hs:519:17-58                  655    3500000    0.2    0.0     0.2    0.0
+           randomIvalInteger.f.v'    System.Random         System/Random.hs:489:25-76                  649    3500000    6.5    4.7     6.5    4.7
+           randomIvalInteger.f.x     System.Random         System/Random.hs:488:25-39                  650    3500000    0.0    0.0     0.0    0.0
+           randomIvalInteger.f.g'    System.Random         System/Random.hs:488:25-39                  669    3499999    0.0    0.0     0.0    0.0
+          randomIvalInteger.(...)    System.Random         System/Random.hs:472:8-36                   664    3500000    3.6    0.0     3.6    0.0
+           genRange                  System.Random         System/Random.hs:219:3-23                   665    3500000    0.0    0.0     0.0    0.0
+          randomIvalInteger.b        System.Random         System/Random.hs:473:8-54                   668    3500000    5.3    6.3     5.3    6.3
+          randomIvalInteger.genhi    System.Random         System/Random.hs:472:8-36                   667    3500000    0.0    0.0     0.0    0.0
+          randomIvalInteger.genlo    System.Random         System/Random.hs:472:8-36                   663    3500000    1.2    0.0     1.2    0.0
+          randomIvalInteger.k        System.Random         System/Random.hs:482:8-20                   644    3500000    1.2    1.6     1.2    1.6
+          randomIvalInteger.magtgt   System.Random         System/Random.hs:483:8-21                   645    3500000    3.1    1.6     3.1    1.6
+      shuffleBits.bs'                BingoSim.Simulation   src/BingoSim/Simulation.hs:125:7-34         670    3500000    2.6    1.6     5.4    3.0
+       swapBits                      BingoSim.Simulation   src/BingoSim/Simulation.hs:(138,1)-(141,46) 672    3500000    2.4    1.4     2.7    1.4
+        swapBits.x                   BingoSim.Simulation   src/BingoSim/Simulation.hs:140:7-53         673    3182498    0.3    0.0     0.3    0.0
+      shuffleBits.i                  BingoSim.Simulation   src/BingoSim/Simulation.hs:124:7-37         636    3500000    0.0    0.0     0.0    0.0
+      shuffleBits.n'                 BingoSim.Simulation   src/BingoSim/Simulation.hs:123:7-23         635    3500000    0.1    0.0     0.1    0.0
+      shuffleBits.gen'               BingoSim.Simulation   src/BingoSim/Simulation.hs:124:7-37         653    3499999    0.3    0.0     0.3    0.0
+     randomBoard.board               BingoSim.Simulation   src/BingoSim/Simulation.hs:108:7-26         671     100000    0.0    0.0     0.0    0.0
+    runSimulation.rate               BingoSim.Simulation   src/BingoSim/Simulation.hs:80:7-58          689          1    0.0    0.0     0.0    0.0
+    newStdGen                        System.Random         System/Random.hs:573:1-46                   601          0    0.0    0.0     0.0    0.0
+     split                           System.Random         System/Random.hs:224:3-18                   608          0    0.0    0.0     0.0    0.0
+      stdSplit                       System.Random         System/Random.hs:(531,1)-(544,53)           616          1    0.0    0.0     0.0    0.0
+       stdSplit.(...)                System.Random         System/Random.hs:544:25-53                  618          1    0.0    0.0     0.0    0.0
+        next                         System.Random         System/Random.hs:218:3-17                   620          0    0.0    0.0     0.0    0.0
+         stdNext                     System.Random         System/Random.hs:(518,1)-(528,64)           621          1    0.0    0.0     0.0    0.0
+          stdNext.k                  System.Random         System/Random.hs:522:17-38                  622          1    0.0    0.0     0.0    0.0
+          stdNext.k'                 System.Random         System/Random.hs:526:17-38                  625          1    0.0    0.0     0.0    0.0
+          stdNext.s1'                System.Random         System/Random.hs:523:17-59                  623          1    0.0    0.0     0.0    0.0
+          stdNext.s1''               System.Random         System/Random.hs:524:17-64                  624          1    0.0    0.0     0.0    0.0
+          stdNext.s2'                System.Random         System/Random.hs:527:17-60                  626          1    0.0    0.0     0.0    0.0
+          stdNext.s2''               System.Random         System/Random.hs:528:17-64                  627          1    0.0    0.0     0.0    0.0
+       stdSplit.left                 System.Random         System/Random.hs:535:25-50                  629          1    0.0    0.0     0.0    0.0
+       stdSplit.new_s1               System.Random         System/Random.hs:(538,25)-(539,58)          628          1    0.0    0.0     0.0    0.0
+       stdSplit.new_s2               System.Random         System/Random.hs:(541,25)-(542,58)          631          1    0.0    0.0     0.0    0.0
+       stdSplit.right                System.Random         System/Random.hs:536:25-50                  632          1    0.0    0.0     0.0    0.0
+       stdSplit.t1                   System.Random         System/Random.hs:544:25-53                  630          1    0.0    0.0     0.0    0.0
+       stdSplit.t2                   System.Random         System/Random.hs:544:25-53                  617          1    0.0    0.0     0.0    0.0

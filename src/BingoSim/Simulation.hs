@@ -38,7 +38,6 @@ import           Data.Bits
 import           Data.IORef
 import           Data.Word
 import           System.Random
-import           System.Random.Shuffle
 import           Text.Printf
 
 import           BingoSim.Board
@@ -87,33 +86,57 @@ runSimulation trials = do
 
 -- | Generate a random board.
 --
--- Uses a somewhat naive strategy:
+-- Uses a somewhat contrived strategy:
 --
--- 1. Generate the numbers @0@ to @35@ in a 'List'
--- 2. Shuffle them using 'System.Random' and 'System.Random.Shuffle'
--- 3. Take the first 15 of this list to represent picking 15 random tiles.
--- 4. Flip on the bit corresponding to each tile we picked.
+-- 1. Start with a bit sequence with fifteen 1's (@0x7fff@).
+-- 2. Use [Fisher-Yates](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) to shuffle the individual bits among the lower 36 bits of the sequence.
 --
--- The benefit is that this exactly matches the intuition we have for how this
--- game works in the real world.
+-- This is much faster than the naive strategy of:
+--
+-- 1. Generate the numbers @0@ to @35@ in a list and shuffle them.
+-- 2. Take the first 15, to represent picking 15 random tiles.
+-- 3. Flip on the bits corresponding to each tile we picked.
+--
+-- The Fisher-Yates on bits approach is faster because we don't have to
+-- generate a linked list of thunks and instead can operate on a single 64-bit
+-- word.
+--
+-- The sacrifice is that the naive strategy nearly exactly matches our
+-- intuition for how this game works in the real world.
 randomBoard :: RandomGen g => g -> IO (Board, g)
 randomBoard gen = do
-  let (rands, gen') = randomSequence gen 35 1
-  let shuffled      = shuffle [0 .. 35] rands
-  let hits          = take 15 shuffled
-  let bits          = map bit hits
-  let board         = foldr (.|.) (0x0 :: Word64) bits
-  return (Board board, gen')
+  let board = Board 0x7fff
+  return $ shuffleBits gen board 36
 
-randomSequence
+-- | Implements [Fisher-Yates](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle) at the bit level for a 'Board'.
+--
+-- Uses recursion to swap the current bit into place, from most to least
+-- significant.
+shuffleBits
   :: RandomGen g
   => g
-  -> Int -- ^ @n@: The number of elements this sequence will be used to sort
-  -> Int -- ^ @i@: The current random index we're generating (1-indexed)
-  -> ([Int], g)
-randomSequence gen n i | n == i = ([], gen)
-randomSequence gen n i =
-  let (tl, gen' ) = randomSequence gen n (i + 1)
-      (hd, gen'') = randomR (0, 36 - i) gen'
-  in  (hd : tl, gen'')
+  -> Board
+  -> Int -- ^ @n@: The current bit we're considering swapping or leaving alone.
+  -> (Board, g)
+shuffleBits gen board 1 = (board, gen)
+shuffleBits gen (Board bs) n =
+  let n'        = n - 1
+      (i, gen') = randomR (0, n') gen
+      bs'       = swapBits bs n' i
+  in  shuffleBits gen' (Board bs') n'
+
+-- | Helper for swapping two specific bits.
+--
+-- Graciously taken from Sean Eron Anderson's [Bit Twiddling
+-- Hacks](https://graphics.stanford.edu/~seander/bithacks.html#SwappingBitsXOR),
+-- specialized to the case of a length 1 range of bits.
+swapBits
+  :: Word64 -- ^ Input bits
+  -> Int -- ^ @i@: Index of one bit to swap
+  -> Int -- ^ @j@: Index of the other bit to swap
+  -> Word64 -- ^ Swapped result
+swapBits bs i j | i == j = bs
+swapBits bs i j =
+  let x = ((shiftR bs i) `xor` (shiftR bs j)) .&. 0x1
+  in  bs `xor` ((shiftL x i) .|. (shiftL x j))
 
